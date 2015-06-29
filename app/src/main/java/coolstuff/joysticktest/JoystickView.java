@@ -3,6 +3,7 @@ package coolstuff.joysticktest;
 /**
  * Created by smnitro on 6/15/2015.
  * Originally created by zerokol
+ * Using with github policy
  */
 import android.content.Context;
 import android.graphics.Canvas;
