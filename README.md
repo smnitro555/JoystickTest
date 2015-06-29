@@ -1,7 +1,7 @@
 # JoystickTest
 
 This app is designed to showcase two joysticks and have two values generated from them, an X Percentage (positive and negative)
-and a Y Percentage (positive and negative) from the JoystickView Class. This is how the UI looks so far:
+and a Y Percentage (positive and negative) from the JoystickView Class. 
 
 
 
