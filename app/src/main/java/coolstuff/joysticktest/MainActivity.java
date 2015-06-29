@@ -64,13 +64,4 @@ public class MainActivity extends ActionBarActivity {
         Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
     }
 
-    public void LeftStickMoved(View view) {
-        String temp = "Left Stick Touched";
-        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
-    }
-
-    public void RightStickMoved(View view) {
-        String temp = "Right stick Touched";
-        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
-    }
 }
