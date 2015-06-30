@@ -23,8 +23,8 @@
             android:text="Pos1 X:"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:text="0"
             android:id="@+id/x1"/>
 
@@ -35,8 +35,8 @@
             android:layout_marginLeft="20dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:text="0"
             android:id="@+id/y1"/>
 
@@ -44,11 +44,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pos2 X:"
-            android:layout_marginLeft="250dp"/>
+            android:layout_marginLeft="150dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:text="0"
             android:id="@+id/x2"/>
 
@@ -59,8 +59,8 @@
             android:layout_marginLeft="20dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:text="0"
             android:id="@+id/y2"/>
 

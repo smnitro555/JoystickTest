@@ -34,7 +34,9 @@ public class MainActivity extends ActionBarActivity {
 
         stickLeft.setOnJoystickMoveListener(
                 new JoystickView.OnJoystickMoveListener() {
-                    public void onValueChanged(int xVal, int yVal, int zVal) {
+                    public void onValueChanged(int angleVal, int powerVal, int zVal) {
+                        double xVal = (powerVal * Math.sin(Math.toRadians(angleVal)))/100;
+                        double yVal = (powerVal * Math.cos(Math.toRadians(angleVal)))/100;
                         x1.setText(String.valueOf(xVal));
                         y1.setText(String.valueOf(yVal));
                     }
@@ -42,9 +44,11 @@ public class MainActivity extends ActionBarActivity {
 
         stickRight.setOnJoystickMoveListener(
                 new JoystickView.OnJoystickMoveListener() {
-                    public void onValueChanged(int xVal, int yVal, int zVal) {
-                        x2.setText(String.valueOf(xVal));
-                        y2.setText(String.valueOf(yVal));
+                    public void onValueChanged(int angleVal, int powerVal, int zVal) {
+                        double xVal = (powerVal * Math.sin(Math.toRadians(angleVal)))/100;
+                        double yVal = (powerVal * Math.cos(Math.toRadians(angleVal)))/100;
+                        x1.setText(String.valueOf(xVal));
+                        y1.setText(String.valueOf(yVal));
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
