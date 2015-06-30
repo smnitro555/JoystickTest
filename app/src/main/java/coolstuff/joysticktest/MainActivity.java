@@ -47,8 +47,8 @@ public class MainActivity extends ActionBarActivity {
                     public void onValueChanged(int angleVal, int powerVal, int zVal) {
                         double xVal = (powerVal * Math.sin(Math.toRadians(angleVal)))/100;
                         double yVal = (powerVal * Math.cos(Math.toRadians(angleVal)))/100;
-                        x1.setText(String.valueOf(xVal));
-                        y1.setText(String.valueOf(yVal));
+                        x2.setText(String.valueOf(xVal));
+                        y2.setText(String.valueOf(yVal));
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
