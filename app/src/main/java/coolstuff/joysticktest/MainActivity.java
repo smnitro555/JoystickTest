@@ -31,11 +31,23 @@ public class MainActivity extends ActionBarActivity {
         y1 = (TextView) findViewById(R.id.y1);
         x2 = (TextView) findViewById(R.id.x2);
         y2 = (TextView) findViewById(R.id.y2);
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+        stickLeft.setOnJoystickMoveListener(
+                new JoystickView.OnJoystickMoveListener() {
+                    public void onValueChanged(int xVal, int yVal, int zVal) {
+                        x1.setText(String.valueOf(xVal));
+                        y1.setText(String.valueOf(yVal));
+                    }
+                }, JoystickView.DEFAULT_LOOP_INTERVAL);
+
+        stickRight.setOnJoystickMoveListener(
+                new JoystickView.OnJoystickMoveListener() {
+                    public void onValueChanged(int xVal, int yVal, int zVal) {
+                        x2.setText(String.valueOf(xVal));
+                        y2.setText(String.valueOf(yVal));
+                    }
+                }, JoystickView.DEFAULT_LOOP_INTERVAL);
+
     }
 
     @Override
@@ -65,15 +77,5 @@ public class MainActivity extends ActionBarActivity {
         Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
     }
 
-    public boolean onTouch(View view, MotionEvent event) {
-        int action = event.getAction();
-        float x = event.getX();
-        float y = event.getY();
-        Toast.makeText(this, "TouchEvent is happening", Toast.LENGTH_SHORT).show();
-        Log.v("ON_TOUCH", "Action = " + action + " View:" );
-        Log.v("ON_TOUCH", "X = " + x + "Y = " + y);
-
-        return false;
-    }
 
 }
