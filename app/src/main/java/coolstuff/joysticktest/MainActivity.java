@@ -2,6 +2,7 @@ package coolstuff.joysticktest;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -62,6 +63,17 @@ public class MainActivity extends ActionBarActivity {
     public void ConnectDevice(View view) {
         String temp = "Device connected";
         Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean onTouch(View view, MotionEvent event) {
+        int action = event.getAction();
+        float x = event.getX();
+        float y = event.getY();
+        Toast.makeText(this, "TouchEvent is happening", Toast.LENGTH_SHORT).show();
+        Log.v("ON_TOUCH", "Action = " + action + " View:" );
+        Log.v("ON_TOUCH", "X = " + x + "Y = " + y);
+
+        return false;
     }
 
 }
