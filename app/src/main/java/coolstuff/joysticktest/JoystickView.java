@@ -1,3 +1,8 @@
+/*
+This view has been created by zerokol. All credits go to him, this code is being used by the github
+policy.
+
+ */
 package coolstuff.joysticktest;
 
 import android.content.Context;
