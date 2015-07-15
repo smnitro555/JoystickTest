@@ -1,6 +1,7 @@
 package coolstuff.joysticktest;
 
 import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -64,8 +67,8 @@ public class MainActivity extends ActionBarActivity {
         stickRight.setOnJoystickMoveListener(
                 new JoystickView.OnJoystickMoveListener() {
                     public void onValueChanged(int angleVal, int powerVal, int zVal) {
-                        double xVal = (powerVal * Math.sin(Math.toRadians(angleVal)))/100;
-                        double yVal = (powerVal * Math.cos(Math.toRadians(angleVal)))/100;
+                        double xVal = (powerVal * Math.sin(Math.toRadians(angleVal))) / 100;
+                        double yVal = (powerVal * Math.cos(Math.toRadians(angleVal))) / 100;
                         x2.setText(String.valueOf(xVal));
                         y2.setText(String.valueOf(yVal));
                     }
@@ -112,4 +115,26 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(),"Already on", Toast.LENGTH_LONG).show();
         }
     }
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void close() {
+
+        }
+
+        @Override
+        public void flush() {
+
+        }
+
+        @Override
+        public void publish(LogRecord record) {
+
+        }
+
+        public void handleMessage(Message msg) {
+            Toast.makeText(getApplicationContext(), msg.toString(),Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }
