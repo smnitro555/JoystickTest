@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
     private JoystickView stickLeft , stickRight;
     private TextView x1, x2, y1, y2;
     private BluetoothAdapter BA;
+    int REQUEST_ENABLE_BT = 1;
     private Set<BluetoothDevice>pairedDevices;
 
     public View findViewById(int id) {
@@ -44,6 +45,11 @@ public class MainActivity extends ActionBarActivity {
         y2 = (TextView) findViewById(R.id.y2);
 
         BA = BluetoothAdapter.getDefaultAdapter();
+
+        if (!BA.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
 
         stickLeft.setOnJoystickMoveListener(
                 new JoystickView.OnJoystickMoveListener() {
@@ -98,7 +104,7 @@ public class MainActivity extends ActionBarActivity {
     public void blueOn(View view) {
         if (!BA.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(turnOn, 0);
+            startActivityForResult(turnOn, 1);
             Toast.makeText(getApplicationContext(),"Turned on",Toast.LENGTH_LONG).show();
         }
         else
