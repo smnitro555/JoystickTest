@@ -1,5 +1,7 @@
 package coolstuff.joysticktest;
 
+import android.bluetooth.BluetoothSocket;
+
 /**
  * Created by smnitro on 7/17/2015.
  */
@@ -23,5 +25,18 @@ public class DroneControl {
         axisZ = Integer.parseInt(incoming.substring(6,8));
     }
 
+    @Override
+    public String toString() {
+        // Outputs the motors values as 3 digit values, that are representative of the
+        // percentage values of the motor control.
+        String moto1 = String.format("%03d", motor1);
+        String moto2 = String.format("%03d", motor2);
+        String moto3 = String.format("%03d", motor3);
+        String moto4 = String.format("%03d", motor4);
+        return ((moto1.concat(moto2)).concat(moto3)).concat(moto4);
+    }
 
+    public void autoPilotTime(Boolean autopilotCondition, ConnectedThread connection) {
+
+    }
 }
