@@ -1,36 +1,21 @@
 package coolstuff.joysticktest;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private JoystickView stickLeft , stickRight;
     private TextView x1, x2, y1, y2;
     private BluetoothAdapter BA;
     int REQUEST_ENABLE_BT = 1;
-    private Set<BluetoothDevice>pairedDevices;
 
     public View findViewById(int id) {
         return super.findViewById(id);
@@ -102,39 +87,5 @@ public class MainActivity extends ActionBarActivity {
         String temp = "Device connected";
         Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
     }
-
-
-    public void blueOn(View view) {
-        if (!BA.isEnabled()) {
-            Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(turnOn, 1);
-            Toast.makeText(getApplicationContext(),"Turned on",Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"Already on", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    Handler mHandler = new Handler(){
-        @Override
-        public void close() {
-
-        }
-
-        @Override
-        public void flush() {
-
-        }
-
-        @Override
-        public void publish(LogRecord record) {
-
-        }
-
-        public void handleMessage(Message msg) {
-            Toast.makeText(getApplicationContext(), msg.toString(),Toast.LENGTH_SHORT).show();
-        }
-    };
 
 }
