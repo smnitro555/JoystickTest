@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.bluetooth.BluetoothAdapter;
@@ -32,6 +33,8 @@ public class MainActivity extends Activity {
     int readBufferPosition;
     int counter;
     volatile boolean stopWorker;
+    DroneVal drone;
+    Button connectDevice;
 
     int REQUEST_ENABLE_BT = 1;
 
@@ -45,6 +48,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         stickLeft = (JoystickView) findViewById(R.id.stick1);
         stickRight = (JoystickView) findViewById(R.id.stick2);
+        connectDevice = (Button) findViewById(R.id.connectDevice);
         x1 = (TextView) findViewById(R.id.x1);
         y1 = (TextView) findViewById(R.id.y1);
         x2 = (TextView) findViewById(R.id.x2);
@@ -58,6 +62,10 @@ public class MainActivity extends Activity {
                         double yVal = (powerVal * Math.cos(Math.toRadians(angleVal)))/100;
                         x1.setText(String.valueOf(xVal));
                         y1.setText(String.valueOf(yVal));
+                        int xValueInt = (int) (100 * xVal);
+                        int yValueInt = (int) (100 * yVal);
+                        drone.updateManuever(xValueInt, yValueInt);
+                        sendData();
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -68,6 +76,10 @@ public class MainActivity extends Activity {
                         double yVal = (powerVal * Math.cos(Math.toRadians(angleVal))) / 100;
                         x2.setText(String.valueOf(xVal));
                         y2.setText(String.valueOf(yVal));
+                        int xValueInt = (int) (100 * xVal);
+                        int yValueInt = (int) (100 * yVal);
+                        drone.updatePowerVals(xValueInt, yValueInt);
+                        sendData();
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -95,46 +107,28 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Open Button
-    openButton.setOnClickListener(new View.OnClickListener()
-    {
-        public void onClick(View v)
-        {
+    public void ConnectDevice(View view) {
             try
             {
                 findBT();
                 openBT();
+                String temp = "Device connected";
+                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
             }
-            catch (IOException ex) { }
-        }
-    });
-
-    //Send Button
-    sendButton.setOnClickListener(new View.OnClickListener()
-    {
-        public void onClick(View v)
-        {
-            try
-            {
-                sendData();
+            catch (IOException ex) {
+                String temp = "Device Unable to Connect";
+                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
             }
-            catch (IOException ex) { }
-        }
-    });
+    }
 
     //Close button
-    closeButton.setOnClickListener(new View.OnClickListener()
-    {
-        public void onClick(View v)
-        {
+    public void DisconnectDevice(View view) {
             try
             {
                 closeBT();
             }
             catch (IOException ex) { }
-        }
-    });
-}
+    }
 
     void findBT()
     {
@@ -235,11 +229,14 @@ public class MainActivity extends Activity {
         workerThread.start();
     }
 
-    void sendData() throws IOException
-    {
-        String msg = myTextbox.getText().toString();
-        msg += "\n";
-        myOutputStream.write(msg.getBytes());
+    public void sendData() {
+        try {
+            String msg = DroneVal.getText().toString();
+            msg += "\n";
+            myOutputStream.write(msg.getBytes());
+        } catch (IOException ex) {
+
+        }
     }
 
     void closeBT() throws IOException

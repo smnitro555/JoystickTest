@@ -96,14 +96,16 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reset Position"
-                android:id="@+id/resetPosition" />
+                android:text="Disconnect Device"
+                android:id="@+id/disconnectDevice"
+                android:onClick="DisconnectDevice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Turn Bluetooth On"
                 android:onClick="blueOn"/>
+
 
         </LinearLayout>
 
