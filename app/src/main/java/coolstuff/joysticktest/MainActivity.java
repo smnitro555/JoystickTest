@@ -231,11 +231,12 @@ public class MainActivity extends Activity {
 
     public void sendData() {
         try {
-            String msg = DroneVal.getText().toString();
+            String msg = DroneVal.getData();
             msg += "\n";
             myOutputStream.write(msg.getBytes());
         } catch (IOException ex) {
-
+            String temp = "Unable to Send Data";
+            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
         }
     }
 
