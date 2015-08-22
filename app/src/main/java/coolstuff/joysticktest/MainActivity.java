@@ -31,12 +31,9 @@ public class MainActivity extends Activity {
     Thread workerThread;
     byte[] readBuffer;
     int readBufferPosition;
-    int counter;
     volatile boolean stopWorker;
     DroneVal drone;
     Button connectDevice;
-
-    int REQUEST_ENABLE_BT = 1;
 
     public View findViewById(int id) {
         return super.findViewById(id);
@@ -127,7 +124,10 @@ public class MainActivity extends Activity {
             {
                 closeBT();
             }
-            catch (IOException ex) { }
+            catch (IOException ex) {
+                String temp = "Unable to Disconnect";
+                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+            }
     }
 
     void findBT()
@@ -231,7 +231,7 @@ public class MainActivity extends Activity {
 
     public void sendData() {
         try {
-            String msg = DroneVal.getData();
+            String msg = drone.getData();
             msg += "\n";
             myOutputStream.write(msg.getBytes());
         } catch (IOException ex) {
