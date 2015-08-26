@@ -107,14 +107,19 @@ public class MainActivity extends Activity {
     public void ConnectDevice(View view) {
             try
             {
-                findBT();
-                openBT();
-                String temp = "Device connected";
-                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+                boolean found = findBT();
+                if (found) {
+                    openBT();
+                    String temp = "Device connected";
+                    Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                } else {
+                    String temp = "Device Not Connected";
+                    Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                }
             }
             catch (IOException ex) {
                 String temp = "Device Unable to Connect";
-                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
             }
     }
 
@@ -126,16 +131,16 @@ public class MainActivity extends Activity {
             }
             catch (IOException ex) {
                 String temp = "Unable to Disconnect";
-                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
             }
     }
 
-    void findBT()
+    boolean findBT()
     {
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if(myBluetoothAdapter == null)
         {
-            Toast.makeText(this, "No bluetooth adapter available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No bluetooth adapter available", Toast.LENGTH_SHORT).show();
         }
 
         if(!myBluetoothAdapter.isEnabled())
@@ -152,17 +157,17 @@ public class MainActivity extends Activity {
                 if(device.getName().equals("HC-06"))
                 {
                     myBluetoothDevice = device;
-                    break;
+                    return true;
                 }
             }
         }
-        Toast.makeText(this, "Bluetooth Device Found", Toast.LENGTH_SHORT).show();
+        return false;
     }
 
     void openBT() throws IOException
     {
         UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
-        myBluetoothSocket = myBluetoothDevice.createRfcommSocketToServiceRecord(uuid);
+        myBluetoothSocket = myBluetoothDevice.createInsecureRfcommSocketToServiceRecord(uuid);
         myBluetoothSocket.connect();
         myOutputStream = myBluetoothSocket.getOutputStream();
         myInputStream = myBluetoothSocket.getInputStream();
