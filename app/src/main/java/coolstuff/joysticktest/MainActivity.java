@@ -61,8 +61,8 @@ public class MainActivity extends Activity {
                         y1.setText(String.valueOf(yVal));
                         int xValueInt = (int) (100 * xVal);
                         int yValueInt = (int) (100 * yVal);
-                        drone.updateManuever(xValueInt, yValueInt);
-                        sendData();
+                        //drone.updateManuever(xValueInt, yValueInt);
+                        //sendData();
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -75,8 +75,8 @@ public class MainActivity extends Activity {
                         y2.setText(String.valueOf(yVal));
                         int xValueInt = (int) (100 * xVal);
                         int yValueInt = (int) (100 * yVal);
-                        drone.updatePowerVals(xValueInt, yValueInt);
-                        sendData();
+                        //drone.updatePowerVals(xValueInt, yValueInt);
+                        //sendData();
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 

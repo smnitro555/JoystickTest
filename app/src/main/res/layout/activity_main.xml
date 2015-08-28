@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,70 +14,87 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pos1 X:"/>
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:text="0"
-            android:id="@+id/x1"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pos1 Y:"
-            android:layout_marginLeft="20dp"/>
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:text="0"
-            android:id="@+id/y1"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pos2 X:"
-            android:layout_marginLeft="150dp"/>
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:text="0"
-            android:id="@+id/x2"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pos2 Y:"
-            android:layout_marginLeft="20dp"/>
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:text="0"
-            android:id="@+id/y2"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
-        <view
+        <LinearLayout
             android:layout_width="200dp"
-            android:layout_height="200dp"
-            class="coolstuff.joysticktest.JoystickView"
-            android:id="@+id/stick1"
-            android:layout_gravity="center_horizontal"
-            android:onClick="LeftStickMoved"/>
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pos1 X:"/>
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:text="0"
+                    android:id="@+id/x1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pos1 Y:"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:text="0"
+                    android:id="@+id/y1"/>
+
+            </LinearLayout>
+
+            <view
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                class="coolstuff.joysticktest.JoystickView"
+                android:id="@+id/stick1"
+                android:layout_gravity="center_horizontal"
+                android:onClick="LeftStickMoved"/>
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="Motor 1 Trim"
+                    />
+
+                <SeekBar
+                    android:layout_width="200dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/motor1trimBar"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="Motor 2 Trim"
+                    />
+
+                <SeekBar
+                    android:layout_width="200dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/motor2trimBar"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -108,15 +124,85 @@
 
 
         </LinearLayout>
+<LinearLayout
+    android:layout_width="200dp"
+    android:layout_height="300dp"
+    android:orientation="vertical">
 
-        <view
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            class="coolstuff.joysticktest.JoystickView"
-            android:id="@+id/stick2"
-            android:layout_gravity="center_horizontal"
-            android:onClick="RightStickMoved"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pos2 X:" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:text="0"
+            android:id="@+id/x2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pos2 Y:"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:text="0"
+            android:id="@+id/y2"/>
+
+    </LinearLayout>
+
+    <view
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        class="coolstuff.joysticktest.JoystickView"
+        android:id="@+id/stick2"
+        android:layout_gravity="center_horizontal"
+        android:onClick="RightStickMoved"
+        />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="Motor 3 Trim"
             />
+
+        <SeekBar
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:id="@+id/motor3trimBar"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="Motor 4 Trim"
+            />
+
+        <SeekBar
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:id="@+id/motor4trimBar"
+            />
+
+    </LinearLayout>
+</LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
