@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
         y1 = (TextView) findViewById(R.id.y1);
         x2 = (TextView) findViewById(R.id.x2);
         y2 = (TextView) findViewById(R.id.y2);
-
+        drone = new DroneVal();
 
         stickLeft.setOnJoystickMoveListener(
                 new JoystickView.OnJoystickMoveListener() {

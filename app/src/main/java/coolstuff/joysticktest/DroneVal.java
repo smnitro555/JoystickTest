@@ -10,6 +10,10 @@ public class DroneVal {
     int motor3 = 0;
     int motor4 = 0;
 
+    public DroneVal() {
+        //Nothing needs to happen
+    }
+
     public void updatePowerVals(int x1, int y1) {
         if (y1 <= 0) {
             updateAll(0);
