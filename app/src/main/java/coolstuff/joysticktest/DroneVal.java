@@ -9,6 +9,11 @@ public class DroneVal {
     int motor2 = 0;
     int motor3 = 0;
     int motor4 = 0;
+    int trimSensitivity = 50;
+    double trim1 = 1.0;
+    double trim2 = 1.0;
+    double trim3 = 1.0;
+    double trim4 = 1.0;
 
     public DroneVal() {
         //Nothing needs to happen
@@ -35,7 +40,19 @@ public class DroneVal {
     }
 
     public String getData() {
-        String motorValues = motor1 + "," + motor2 + "," + motor3 + "," + motor4;
-        return motorValues;
+        return (motor1 + "," + motor2 + "," + motor3 + "," + motor4);
+
+    }
+
+    public void setTrim(int progress, int trimNumber, int maxBounds) {
+        if (trimNumber == 1) {
+            trim1 = (progress-(maxBounds/2))/trimSensitivity;
+        } else if (trimNumber == 2) {
+            trim2 = (progress-(maxBounds/2))/trimSensitivity;
+        } else if (trimNumber == 3) {
+            trim3 = (progress-(maxBounds/2))/trimSensitivity;
+        } else {
+            trim4 = (progress-(maxBounds/2))/trimSensitivity;
+        }
     }
 }

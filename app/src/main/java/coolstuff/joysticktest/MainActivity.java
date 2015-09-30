@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.bluetooth.BluetoothAdapter;
@@ -22,6 +23,7 @@ import java.util.UUID;
 public class MainActivity extends Activity {
 
     JoystickView stickLeft , stickRight;
+    SeekBar motor1trimBar, motor2trimBar, motor3trimBar, motor4trimBar;
     TextView x1, x2, y1, y2;
     BluetoothAdapter myBluetoothAdapter;
     BluetoothSocket myBluetoothSocket;
@@ -45,6 +47,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         stickLeft = (JoystickView) findViewById(R.id.stick1);
         stickRight = (JoystickView) findViewById(R.id.stick2);
+        motor1trimBar = (SeekBar) findViewById(R.id.motor1trimBar);
+        motor2trimBar = (SeekBar) findViewById(R.id.motor2trimBar);
+        motor3trimBar = (SeekBar) findViewById(R.id.motor3trimBar);
+        motor4trimBar = (SeekBar) findViewById(R.id.motor4trimBar);
         connectDevice = (Button) findViewById(R.id.connectDevice);
         x1 = (TextView) findViewById(R.id.x1);
         y1 = (TextView) findViewById(R.id.y1);
@@ -52,11 +58,16 @@ public class MainActivity extends Activity {
         y2 = (TextView) findViewById(R.id.y2);
         drone = new DroneVal();
 
+        motor1trimBar.setProgress((motor1trimBar.getMax() / 2));
+        motor2trimBar.setProgress((motor2trimBar.getMax() / 2));
+        motor3trimBar.setProgress((motor3trimBar.getMax() / 2));
+        motor4trimBar.setProgress((motor4trimBar.getMax() / 2));
+
         stickLeft.setOnJoystickMoveListener(
                 new JoystickView.OnJoystickMoveListener() {
                     public void onValueChanged(int angleVal, int powerVal, int zVal) {
-                        double xVal = (powerVal * Math.sin(Math.toRadians(angleVal)))/100;
-                        double yVal = (powerVal * Math.cos(Math.toRadians(angleVal)))/100;
+                        double xVal = (powerVal * Math.sin(Math.toRadians(angleVal))) / 100;
+                        double yVal = (powerVal * Math.cos(Math.toRadians(angleVal))) / 100;
                         x1.setText(String.valueOf(xVal));
                         y1.setText(String.valueOf(yVal));
                         int xValueInt = (int) (100 * xVal);
@@ -80,6 +91,51 @@ public class MainActivity extends Activity {
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
+        motor1trimBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        drone.setTrim(progress, 1, motor1trimBar.getMax());
+                    }
+
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+
+        motor2trimBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        drone.setTrim(progress, 2, motor1trimBar.getMax());
+                    }
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+
+        motor3trimBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        drone.setTrim(progress, 3, motor1trimBar.getMax());
+                    }
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+
+        motor4trimBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        drone.setTrim(progress, 4, motor1trimBar.getMax());
+                    }
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
     }
 
     @Override
