@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -191,6 +192,10 @@ public class MainActivity extends Activity {
             }
     }
 
+    public void pushData(View view) {
+        sendData2("t");
+    }
+
     boolean findBT()
     {
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -294,6 +299,20 @@ public class MainActivity extends Activity {
         try {
             String msg = drone.getData();
             msg += "\n";
+
+            myOutputStream.write(msg.getBytes());
+        } catch (IOException ex) {
+            String temp = "Unable to Send Data";
+            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void sendData2(String message) {
+        Log.e("SendData2", "it has run");
+        try {
+            String msg = message;
+            msg += "\n";
+            Log.e("OUR BYTES", new String(msg.getBytes()));
             myOutputStream.write(msg.getBytes());
         } catch (IOException ex) {
             String temp = "Unable to Send Data";

@@ -7,8 +7,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="JoyStick Test"
-        android:textSize="30sp"
+        android:text="Drone Controller"
+        android:textSize="20sp"
         />
 
     <LinearLayout
@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:text="Motor 1 Trim"
                     />
 
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:text="Motor 2 Trim"
                     />
 
@@ -121,6 +121,12 @@
                 android:layout_height="wrap_content"
                 android:text="Turn Bluetooth On"
                 android:onClick="blueOn"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="push some data"
+                android:onClick="pushData"/>
 
 
         </LinearLayout>
@@ -177,7 +183,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:text="Motor 3 Trim"
             />
 
@@ -190,7 +196,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:text="Motor 4 Trim"
             />
 
