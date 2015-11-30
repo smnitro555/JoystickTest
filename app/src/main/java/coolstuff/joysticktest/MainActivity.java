@@ -173,7 +173,7 @@ public class MainActivity extends Activity {
                 } else {
                     // The toggle is disabled
                     calibrate = false;
-                    drone.updatePowerVals(0.0, 0.0);
+                    drone.setLow();
                     try {
                         sendData();
                     }

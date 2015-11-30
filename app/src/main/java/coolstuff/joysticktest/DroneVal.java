@@ -43,6 +43,14 @@ public class DroneVal {
         Log.e("val", temp);
     }
 
+    public void setLow() {
+        int lowVal = 0;
+        motor1 = lowVal;
+        motor2 = lowVal;
+        motor3 = lowVal;
+        motor4 = lowVal;
+    }
+
     public String getData() {
         String temp = motor1 + "," + motor2 + "," + motor3 + "," + motor4 + "n";
         Log.e("Motor Values", temp);
