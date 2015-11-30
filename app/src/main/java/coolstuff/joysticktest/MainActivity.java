@@ -91,9 +91,9 @@ public class MainActivity extends Activity {
                         double yVal = (powerVal * Math.cos(Math.toRadians(angleVal))) / 100;
                         x2.setText(String.valueOf(xVal));
                         y2.setText(String.valueOf(yVal));
-                        int xValueInt = (int) (100 * xVal);
-                        int yValueInt = (int) (100 * yVal);
-                        drone.updatePowerVals(xValueInt, yValueInt);
+                        //int xValueInt = (int) (100 * xVal);
+                        //int yValueInt = (int) (100 * yVal);
+                        drone.updatePowerVals(xVal, yVal);
                         try {
                             sendData();
                         }

@@ -1,5 +1,7 @@
 package coolstuff.joysticktest;
 
+import android.util.Log;
+
 /**
  * Created by Siva on 8/21/2015.
  * Used to Calculate Values from Joystick to Motor Values
@@ -19,7 +21,7 @@ public class DroneVal {
         //Nothing needs to happen
     }
 
-    public void updatePowerVals(int x1, int y1) {
+    public void updatePowerVals(double x1, double y1) {
         if (y1 <= 0) {
             updateAll(0);
         } else {
@@ -27,20 +29,24 @@ public class DroneVal {
         }
     }
 
-    public void updateManuever(int x1, int y1) {
+    public void updateManuever(double x1, double y1) {
 
 
     }
 
-    public void updateAll(int val) {
-        motor1 = val;
-        motor2 = val;
-        motor3 = val;
-        motor4 = val;
+    public void updateAll(double val) {
+        motor1 = (int) ((val*600) + 1200);
+        motor2 = (int) ((val*600) + 1200);
+        motor3 = (int) ((val*600) + 1200);
+        motor4 = (int) ((val*600) + 1200);
+        String temp = "" + val;
+        Log.e("val", temp);
     }
 
     public String getData() {
-        return (((motor1*800)+1200) + "," + ((motor2*800)+1200) + "," + ((motor3*800)+1200) + "," + ((motor4*800)+1200) + "n");
+        String temp = motor1 + "," + motor2 + "," + motor3 + "," + motor4 + "n";
+        Log.e("Motor Values", temp);
+        return temp;
     }
 
     public void setTrim(int progress, int trimNumber, int maxBounds) {
