@@ -40,8 +40,7 @@ public class DroneVal {
     }
 
     public String getData() {
-        return (motor1 + "," + motor2 + "," + motor3 + "," + motor4);
-
+        return (((motor1*800)+1200) + "," + ((motor2*800)+1200) + "," + ((motor3*800)+1200) + "," + ((motor4*800)+1200) + "n");
     }
 
     public void setTrim(int progress, int trimNumber, int maxBounds) {

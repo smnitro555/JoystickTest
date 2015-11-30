@@ -73,8 +73,14 @@ public class MainActivity extends Activity {
                         y1.setText(String.valueOf(yVal));
                         int xValueInt = (int) (100 * xVal);
                         int yValueInt = (int) (100 * yVal);
-                        //drone.updateManuever(xValueInt, yValueInt);
-                        //sendData();
+                        drone.updateManuever(xValueInt, yValueInt);
+                        try {
+                            sendData();
+                        }
+                        catch (Exception ex) {
+                            String temp = "Could not Update Right Stick";
+                            Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -87,8 +93,14 @@ public class MainActivity extends Activity {
                         y2.setText(String.valueOf(yVal));
                         int xValueInt = (int) (100 * xVal);
                         int yValueInt = (int) (100 * yVal);
-                        //drone.updatePowerVals(xValueInt, yValueInt);
-                        //sendData();
+                        drone.updatePowerVals(xValueInt, yValueInt);
+                        try {
+                            sendData();
+                        }
+                        catch (Exception ex) {
+                            String temp = "Could not Update Left Stick";
+                            Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -188,12 +200,19 @@ public class MainActivity extends Activity {
             }
             catch (IOException ex) {
                 String temp = "Unable to Disconnect";
-                Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
             }
     }
 
     public void pushData(View view) {
-        sendData2("t");
+        try {
+            sendData2("Motor1 10 Motor2 20 Motor3 30 Motor4 40");
+        }
+        catch (Exception ex) {
+            String temp = "Unable to Send Data";
+            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     boolean findBT()
@@ -201,7 +220,7 @@ public class MainActivity extends Activity {
         myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if(myBluetoothAdapter == null)
         {
-            Toast.makeText(getApplicationContext(), "No bluetooth adapter available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No bluetooth adapter available", Toast.LENGTH_SHORT).show();
         }
 
         if(!myBluetoothAdapter.isEnabled())
@@ -233,7 +252,7 @@ public class MainActivity extends Activity {
         myOutputStream = myBluetoothSocket.getOutputStream();
         myInputStream = myBluetoothSocket.getInputStream();
 
-        beginListenForData();
+        //beginListenForData();
 
         Toast.makeText(this, "Bluetooth Opened", Toast.LENGTH_SHORT).show();
     }
@@ -322,11 +341,18 @@ public class MainActivity extends Activity {
 
     void closeBT() throws IOException
     {
-        stopWorker = true;
-        myOutputStream.close();
-        myInputStream.close();
-        myBluetoothSocket.close();
-        Toast.makeText(getApplicationContext(), "Bluetooth Closed", Toast.LENGTH_SHORT).show();
+        try {
+            stopWorker = true;
+            myOutputStream.close();
+            myInputStream.close();
+            myBluetoothSocket.close();
+            Toast.makeText(getApplicationContext(), "Bluetooth Closed", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception ex) {
+            String temp = "Unable to Close Connection";
+            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
