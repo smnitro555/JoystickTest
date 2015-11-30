@@ -122,11 +122,13 @@
                 android:text="Turn Bluetooth On"
                 android:onClick="blueOn"/>
 
-            <Button
+            <ToggleButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="push some data"
-                android:onClick="pushData"/>
+                android:text="High Value"
+                android:id="@+id/highValue"
+                android:textOn="High Point"
+                android:textOff="Low Point" />
 
 
         </LinearLayout>
