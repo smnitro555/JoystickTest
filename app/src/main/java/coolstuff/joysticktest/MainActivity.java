@@ -369,16 +369,14 @@ public class MainActivity extends Activity {
     }
 
     public void sendData() {
-        if (!((drone.previousSent).equals(drone.getData()))) {
-            try {
-                String msg = drone.getData();
-                msg += "\n";
-                drone.setPreviousSentData(drone.getData());
-                myOutputStream.write(msg.getBytes());
-            } catch (IOException ex) {
-                String temp = "Unable to Send Data";
-                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
-            }
+        try {
+            String msg = drone.getData();
+            msg += "\n";
+            Log.e("SendData", "Data Sent");
+            myOutputStream.write(msg.getBytes());
+        } catch (IOException ex) {
+            String temp = "Unable to Send Data";
+            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
         }
     }
 

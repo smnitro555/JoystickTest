@@ -16,7 +16,7 @@ public class DroneVal {
     double trim2 = 1.0;
     double trim3 = 1.0;
     double trim4 = 1.0;
-    String previousSent;
+    String previousSent = null;
 
     public DroneVal() {
         //Nothing needs to happen
