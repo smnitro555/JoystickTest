@@ -16,6 +16,7 @@ public class DroneVal {
     double trim2 = 1.0;
     double trim3 = 1.0;
     double trim4 = 1.0;
+    String previousSent;
 
     public DroneVal() {
         //Nothing needs to happen
@@ -43,8 +44,16 @@ public class DroneVal {
         Log.e("val", temp);
     }
 
-    public void setLow() {
-        int lowVal = 0;
+    public void setCalibrateLow() {
+        int lowVal = 1200;
+        motor1 = lowVal;
+        motor2 = lowVal;
+        motor3 = lowVal;
+        motor4 = lowVal;
+    }
+
+    public void setStartup() {
+        int lowVal = 1000;
         motor1 = lowVal;
         motor2 = lowVal;
         motor3 = lowVal;
@@ -67,5 +76,9 @@ public class DroneVal {
         } else {
             trim4 = (progress-(maxBounds/2))/trimSensitivity;
         }
+    }
+
+    public void setPreviousSentData(String temp) {
+        previousSent = temp;
     }
 }

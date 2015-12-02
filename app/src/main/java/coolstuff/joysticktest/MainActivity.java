@@ -57,6 +57,7 @@ public class MainActivity extends Activity {
         motor4trimBar = (SeekBar) findViewById(R.id.motor4trimBar);
         connectDevice = (Button) findViewById(R.id.connectDevice);
         ToggleButton toggle = (ToggleButton) findViewById(R.id.highValue);
+        ToggleButton toggle2 = (ToggleButton) findViewById(R.id.startup);
         x1 = (TextView) findViewById(R.id.x1);
         y1 = (TextView) findViewById(R.id.y1);
         x2 = (TextView) findViewById(R.id.x2);
@@ -77,10 +78,10 @@ public class MainActivity extends Activity {
                         y1.setText(String.valueOf(yVal));
                         int xValueInt = (int) (100 * xVal);
                         int yValueInt = (int) (100 * yVal);
-                        if(!calibrate) {
+                        if (!calibrate) {
                             drone.updateManuever(xValueInt, yValueInt);
                             try {
-                                sendData();
+                                // sendData();
                             } catch (Exception ex) {
                                 //String temp = "Could not Update Right Stick";
                                 //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
@@ -165,6 +166,33 @@ public class MainActivity extends Activity {
                     drone.updatePowerVals(1.0, 1.0);
                     try {
                         sendData();
+                    } catch (Exception ex) {
+                        //String temp = "Could not Update Left Stick";
+                        //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // The toggle is disabled
+                    calibrate = false;
+                    drone.setCalibrateLow();
+                    try {
+                        sendData();
+                    } catch (Exception ex) {
+                        //String temp = "Could not Update Left Stick";
+                        //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        toggle2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                    // Startup Mode
+                    calibrate = true;
+                    drone.setStartup();
+                    try {
+                        sendData();
                     }
                     catch (Exception ex) {
                         //String temp = "Could not Update Left Stick";
@@ -173,7 +201,7 @@ public class MainActivity extends Activity {
                 } else {
                     // The toggle is disabled
                     calibrate = false;
-                    drone.setLow();
+                    drone.setCalibrateLow();
                     try {
                         sendData();
                     }
@@ -209,22 +237,24 @@ public class MainActivity extends Activity {
     }
 
     public void ConnectDevice(View view) {
-            try
-            {
-                boolean found = findBT();
-                if (found) {
-                    openBT();
-                    String temp = "Device connected";
-                    Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
-                } else {
-                    String temp = "Device Not Connected";
+                try
+                {
+                    boolean found = findBT();
+                    if (found) {
+                        openBT();
+                        String temp = "Device connected";
+                        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        String temp = "Device Not Connected";
+                        Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (IOException ex) {
+                    String temp = "Device Unable to Connect";
                     Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
                 }
-            }
-            catch (IOException ex) {
-                String temp = "Device Unable to Connect";
-                Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
-            }
+
     }
 
     //Close button
@@ -339,14 +369,16 @@ public class MainActivity extends Activity {
     }
 
     public void sendData() {
-        try {
-            String msg = drone.getData();
-            msg += "\n";
-
-            myOutputStream.write(msg.getBytes());
-        } catch (IOException ex) {
-            String temp = "Unable to Send Data";
-            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+        if (!((drone.previousSent).equals(drone.getData()))) {
+            try {
+                String msg = drone.getData();
+                msg += "\n";
+                drone.setPreviousSentData(drone.getData());
+                myOutputStream.write(msg.getBytes());
+            } catch (IOException ex) {
+                String temp = "Unable to Send Data";
+                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

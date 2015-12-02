@@ -125,10 +125,16 @@
             <ToggleButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="High Value"
                 android:id="@+id/highValue"
                 android:textOn="High Point"
                 android:textOff="Low Point" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/startup"
+                android:textOn="Startup Mode"
+                android:textOff="Normal Mode" />
 
 
         </LinearLayout>
